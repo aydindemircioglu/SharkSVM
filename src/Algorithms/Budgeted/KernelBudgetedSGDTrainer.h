@@ -26,7 +26,7 @@
  * \date        2014
  *
  *
- * \par Copyright 1995-2014 Shark Development Team
+ * \par Copyright 2014-2016 Aydin Demircioglu
  *
  * <BR><HR>
  * This file is part of Shark.
@@ -115,16 +115,7 @@ namespace shark {
             /// preinitialization methods
             enum preInitializationMethod {NONE, RANDOM}; // TODO: add KMEANS
 
-            
-            /// data selection strategy
-            enum DataSelectionStrategy {UNIFORM, ACF};
 
-            
-            // strategy constants
-            #define CHANGE_RATE 0.2
-            #define PREF_MIN 0.05
-            #define PREF_MAX 20.0
-            
             
             /// \brief Constructor
             /// Note that there is no cache size involved, as merging vectors will always create new ones,
@@ -150,7 +141,6 @@ namespace shark {
                                       AbstractBudgetMaintenanceStrategy<InputType> *budgetMaintenanceStrategy = NULL,
                                       size_t epochs = 1,
                                       size_t preInitializationMethod = NONE,
-                                      size_t dataSelectionStrategy = ACF,
                                       double minMargin = 1.0f)
                 : m_kernel (kernel)
                 , m_loss (loss)
@@ -161,7 +151,6 @@ namespace shark {
                 , m_budgetMaintenanceStrategy (budgetMaintenanceStrategy)
                 , m_epochs (epochs)
                 , m_preInitializationMethod (preInitializationMethod)
-                , m_dataSelectionStrategy (dataSelectionStrategy)
                 , m_minMargin (minMargin){
                     
                 // check that the maintenance strategy is not null.
@@ -323,30 +312,6 @@ namespace shark {
                 }
 
                 
-                // init data selection strategy
-                std::vector<std::size_t> schedule(ell);
-
-                // example-wise measure of success
-                RealVector pref(ell, 1.0);
-
-                // normalization constant
-                double prefsum = ell;
-
-                if (m_dataSelectionStrategy == UNIFORM)
-                {
-                    for (std::size_t i=0; i<ell; i++) 
-                        schedule[i] = i;
-                }
-                
-                if (m_dataSelectionStrategy == ACF)
-                {
-                }
-                    
-                    
-                // gain for ACF
-                const double gain_learning_rate = 1.0 / ell;
-                double average_gain = 0.0;
-                
                 // whatever strategy we did use-- the last budget vector needs
                 // to be zeroed out, either it was zero anyway (none preinit)
                 // or it is the extra budget vector we need for technical reasons
@@ -418,27 +383,6 @@ namespace shark {
                         
                         m_budgetMaintenanceStrategy->addToModel (budgetModel, predictions, dataset.element (b));
                     }
-
-                    // update gain-based preferences
-                    if (m_dataSelectionStrategy == ACF)
-                    {
-                        int epoch = (int) iter/ell;
-                        if (epoch == 0) 
-                        {
-                            //average_gain += gain / (double)ell;
-                        }
-                        else
-                        {      
-                            int i = iter % ell;
-                            double gain = 1.0;
-                            double change = CHANGE_RATE * (gain / average_gain - 1.0);
-                            double newpref = std::min(PREF_MAX, std::max(PREF_MIN, pref(i) * std::exp(change)));
-                            prefsum += newpref - pref(i);
-                            pref(i) = newpref;
-                            average_gain = (1.0 - gain_learning_rate) * average_gain + gain_learning_rate * gain;
-                        }
-                    }
-                    
                     
                     // check if we need to save the model
                     if (iter % CHECKINTERVAL == 0) {
@@ -496,34 +440,6 @@ namespace shark {
 
                             // do not count computation of primal to the save times
                             nextSaveTime = boost::serialization::singleton<GlobalParameters>::get_const_instance().now() + timeOffset;
-                        }
-                    }
-                    
-                    // every epoch:
-                    if ((iter % ell == 0) && (iter > 0)) {
-                        // ACF
-                        if (m_dataSelectionStrategy == ACF)
-                        {
-                            // define schedule
-                            double psum = prefsum;
-                            prefsum = 0.0;
-                            std::size_t pos = 0;
-                            for (std::size_t i=0; i<ell; i++)
-                            {
-                                double p = pref(i);
-                                double num = (psum < 1e-6) ? ell - pos : std::min((double)(ell - pos), (ell - pos) * p / psum);
-                                std::size_t n = (std::size_t)std::floor(num);
-                                double prob = num - n;
-                                if (Rng::uni() < prob) n++;
-                                for (std::size_t j=0; j<n; j++)
-                                {
-                                    schedule[pos] = i;
-                                    pos++;
-                                }
-                                psum -= p;
-                                prefsum += p;
-                            }
-                            SHARK_ASSERT(pos == ell);
                         }
                     }
                 }
@@ -625,11 +541,8 @@ namespace shark {
 
             std::size_t m_epochs;                     ///< number of training epochs (sweeps over the data), or 0 for default = max(10, C)
 
-            /// method to preinitialize budget
+            //method to preinitialize budget
             size_t m_preInitializationMethod;
-            
-            /// method to select next data point 
-            size_t m_dataSelectionStrategy;
 
             // needed margin below which we update the model, also called beta sometimes
             double m_minMargin;

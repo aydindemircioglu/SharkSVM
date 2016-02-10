@@ -2,16 +2,16 @@
 /*!
  *
  *
- * \brief       Semi-Stochastic Gradient Descent Method
+ * \brief       DCSVM implementation
  *
  *
  *
  *
- * \author      T. Glasmachers, Aydin Demircioglu
- * \date        2013
+ * \author      Aydin Demircioglu
+ * \date        2014
  *
  *
- * \par Copyright 2014-2016 Aydin Demircioglu
+ * \par Copyright 1995-2014 Shark Development Team
  *
  * <BR><HR>
  * This file is part of Shark.
@@ -34,8 +34,8 @@
 //===========================================================================
 
 
-#ifndef SHARK_ALGORITHMS_KERNELS2GDTRAINER_H
-#define SHARK_ALGORITHMS_KERNELS2GDTRAINER_H
+#ifndef SHARK_ALGORITHMS_DCSVMTRAINER_H
+#define SHARK_ALGORITHMS_DCSVMTRAINER_H
 
 #include <iostream>
 #include "GlobalParameters.h"
@@ -44,8 +44,7 @@
 
 #include <shark/Algorithms/Trainers/AbstractTrainer.h>
 #include <shark/Core/IParameterizable.h>
-#include <shark/LinAlg/KernelMatrix.h>
-#include <shark/LinAlg/PartlyPrecomputedMatrix.h>
+#include <shark/Models/Kernels/GaussianRbfKernel.h> //the used kernel for the SVM
 #include <shark/Models/Kernels/KernelExpansion.h>
 #include <shark/Models/Kernels/KernelHelpers.h>
 #include <shark/ObjectiveFunctions/Loss/AbstractLoss.h>
@@ -54,14 +53,16 @@
 namespace shark {
 
 
-///
-/// \brief Generic stochastic gradient descent training for kernel-based models.
+/// clustering methods-- or do we provide the algorithms with an clustering object.
+    // any linear-time kernel kmeans in shark?? is that an classfier?
+
+
 
 ///
-/// \par
-///
-    template <class InputType, class CacheType = float>
-    class KernelS2GDTrainer : public AbstractTrainer< KernelClassifier<InputType> >, public IParameterizable {
+/// \brief DCSVM implementation. Converted from matlab.
+
+    template <class InputType>
+    class DCSVMTrainer : public AbstractTrainer< KernelClassifier<InputType> >, public IParameterizable {
         public:
             typedef AbstractTrainer< KernelExpansion<InputType> > base_type;
             typedef AbstractKernelFunction<InputType> KernelType;
@@ -69,11 +70,6 @@ namespace shark {
             typedef KernelExpansion<InputType> ModelType;
             typedef AbstractLoss<unsigned int, RealVector> LossType;
             typedef typename ConstProxyReference<typename Batch<InputType>::type const>::type ConstBatchInputReference;
-            typedef CacheType QpFloatType;
-
-            typedef KernelMatrix<InputType, QpFloatType> KernelMatrixType;
-            typedef PartlyPrecomputedMatrix< KernelMatrixType > PartlyPrecomputedMatrixType;
-
 
             /// \brief Constructor
             ///
@@ -82,58 +78,24 @@ namespace shark {
             /// \param  C               regularization parameter - always the 'true' value of C, even when unconstrained is set
             /// \param  offset          whether to train with offset/bias parameter or not
             /// \param  unconstrained   when a C-value is given via setParameter, should it be piped through the exp-function before using it in the solver?
-            /// \param  updateFrequency     update frequency, will be automatically set to 5*n if frequency is set to zero
-            KernelSVRGTrainer (KernelType* kernel, const LossType* loss, double C, bool offset, bool unconstrained = false, size_t updateFrequency = 0, double learningRate = 0.001, size_t cacheSize = 0x4000000)
+            /// \param  earlyStopping    should the algorithm do early stopping?
+            /// \param  clusteringMethod    method to use for clustering.
+            /// \param  nClusters       number of clusters to use
+            DCSVMTrainer (KernelType *kernel, const LossType *loss, double C, bool offset, bool earlyStopping = true, bool unconstrained = false)
                 : m_kernel (kernel)
                 , m_loss (loss)
                 , m_C (C)
+                , m_earlyStopping (earlyStopping)
+                , m_nClusters (64)
                 , m_offset (offset)
                 , m_unconstrained (unconstrained)
-                , m_updateFrequency (updateFrequency)
-                , m_learningRate (learningRate)
                 , m_epochs (0)
-                , m_cacheSize (cacheSize)
             { }
 
 
-
-
-            /// return current learning rate
-            double updateFrequency() const {
-                return m_updateFrequency;
-            }
-
-
-            void setUpdateFrequency (size_t updateFrequency) {
-                m_updateFrequency = updateFrequency;
-            }
-
-
-
-            /// return current learning rate
-            double learningRate() const {
-                return m_learningRate;
-            }
-
-
-            void setLearningRate (double learningRate) {
-                m_learningRate = learningRate;
-            }
-
-
-            /// return current cachesize
-            double cacheSize() const {
-                return m_cacheSize;
-            }
-
-
-            void setCacheSize (std::size_t size) {
-                m_cacheSize = size;
-            }
-
             /// \brief From INameable: return the class name.
             std::string name() const {
-                return "KernelSGDTrainer";
+                return "DCSVMTrainer";
             }
 
             void train (ClassifierType &classifier, const LabeledData<InputType, unsigned int> &dataset) {
@@ -147,8 +109,7 @@ namespace shark {
 
                 // pre-compute the kernel matrix (may change in the future)
                 // and create linear array of labels
-                KernelMatrixType  km (* (this->m_kernel), dataset.inputs());
-                PartlyPrecomputedMatrixType  K (&km, m_cacheSize);
+                RealMatrix K = calculateRegularizedKernelMatrix (* (this->m_kernel), dataset.inputs(), 0);
                 UIntVector y = createBatch (dataset.labels().elements());
                 const double lambda = 0.5 / (ell * m_C);
 
@@ -175,10 +136,7 @@ namespace shark {
                 std::cout << "Time at start:" << startTime << std::endl;
 
                 // SGD loop
-                blas::vector<QpFloatType> kernelRow (ell, 0);
-
                 for (std::size_t iter = 0; iter < iterations; iter++) {
-
                     // active variable
                     std::size_t b = Rng::discrete (0, ell - 1);
 
@@ -187,8 +145,7 @@ namespace shark {
 
                     // compute prediction
                     f_b.clear();
-                    K.row (b, kernelRow);
-                    axpy_prod (trans (alpha), kernelRow, f_b, false, alphaScale);
+                    axpy_prod (trans (alpha), row (K, b), f_b, false, alphaScale);
 
                     if (m_offset) noalias (f_b) += model.offset();
 
@@ -348,15 +305,6 @@ namespace shark {
             bool m_offset;                            ///< should the resulting model have an offset term?
             bool m_unconstrained;                     ///< should C be stored as log(C) as a parameter?
             std::size_t m_epochs;                     ///< number of training epochs (sweeps over the data), or 0 for default = max(10, C)
-
-            // update frequency, the 'm' parameter
-            std::size_t m_updateFrequency;
-
-            // learning rate, the 'eta' parameter
-            double m_learningRate;
-
-            // cache size to use.
-            std::size_t m_cacheSize;
     };
 
 

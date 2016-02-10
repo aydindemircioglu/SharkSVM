@@ -10,7 +10,7 @@
  * \date        2014
  *
  *
- * \par Copyright 1995-2014 Shark Development Team
+ * \par Copyright 2014-2016 Aydin Demircioglu
  *
  * <BR><HR>
  * This file is part of Shark.
@@ -88,7 +88,7 @@ int main (int argc, char** argv) {
 
     // hello world!
     BOOST_LOG_TRIVIAL (info) << "SharkSVM Predict v" << SHARKSVM_VERSION_MAJOR << "." << SHARKSVM_VERSION_MINOR << "." <<  SHARKSVM_VERSION_PATCH << " -- " << SHARKSVM_BUILD_TYPE << ".";
-    BOOST_LOG_TRIVIAL (info) << "Copyright 1995-2014 Shark Development Team" << std::endl;
+    BOOST_LOG_TRIVIAL (info) << "Copyright 2014-2016 Aydin Demircioglu" << std::endl;
 
     try {
         std::string appName = boost::filesystem::basename (argv[0]);

@@ -10,7 +10,7 @@
  * \date        2014
  *
  *
- * \par Copyright 1995-2014 Shark Development Team
+ * \par Copyright 2014-2016 Aydin Demircioglu
  *
  * <BR><HR>
  * This file is part of Shark.
