@@ -1,0 +1,25 @@
+language: cpp
+compiler:
+  - clang
+before_script:
+  - sudo add-apt-repository -y ppa:boost-latest/ppa
+  - sudo apt-get update
+  - sudo apt-get install libboost1.55-dev  libboost-date-time1.55-dev libboost-filesystem1.55-dev 
+  - sudo apt-get install libboost-graph1.55-dev libboost-iostreams1.55-dev libboost-math1.55-dev 
+  - sudo apt-get install libboost-program-options1.55-dev libboost-python1.55-dev
+  - sudo apt-get install libboost-random1.55-dev libboost-regex1.55-dev libboost-serialization1.55-dev 
+  - sudo apt-get install libboost-signals1.55-dev libboost-system1.55-dev libboost-test1.55-dev libboost-thread1.55-dev
+script:
+  - mkdir shark
+  - cd shark
+  - svn co https://svn.code.sf.net/p/shark-project/code/trunk/Shark .
+  - cmake . -DBoost_LIBRARY_DIR=/usr/lib -DBoost_INCLUDE_DIR=/usr/include
+  - make
+  - sudo make install
+  - cd ..
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make && make test
+
+ 

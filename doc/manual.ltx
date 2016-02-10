@@ -1,0 +1,256 @@
+\documentclass[a4paper,12pt, final]{book}
+
+\usepackage{titlesec}
+\usepackage{verbatim}
+
+\usepackage[cm-default]{fontspec}
+
+
+ %\XeTeXtracingfonts=1 
+
+%\newfontfamily\unicodefont{Oxygen}
+\defaultfontfeatures{Scale=MatchLowercase,Mapping=tex-text}
+\setmainfont[ExternalLocation=./fonts/]{Nunito-Light.ttf}
+%\setmainfont{Oxygen}
+%\setromanfont{Oxygen}
+%\setsansfont{Oxygen}
+\setmonofont[ExternalLocation=./fonts/]{Nunito-Regular.ttf}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{calc}
+\usepackage{array}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{shorttoc}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{german, hyperref} 
+\usepackage{makeidx}
+\usepackage[style=alphabetic-verb]{biblatex}
+
+
+%\bibliography{imagequality}
+
+\graphicspath{{images/}}
+
+\renewcommand{\labelitemi}{$\cdot$}
+
+
+
+\frontmatter
+\pagestyle{fancy}      
+\fancyhead[RO, LE]{\fontfamily{phv}\selectfont \rightmark}
+\fancyhead[RE, LO]{\fontfamily{phv}\selectfont \thepage}
+\fancyhead[CE, CO]{}
+\fancyfoot[CE, CO]{}
+
+ \makeatletter
+ \makeindex
+ 
+\def\cleardoublepage{\vspace{1.0cm}}  
+\def\clearpage{\vspace{1.0cm}}
+%\def\newpage{\vspace{1.0cm}}
+\makeatother        
+ 
+
+\titleformat{\section}%
+  {\Large\bfseries \filcenter}%
+  {\thesection}%
+  {1em}%
+  {}%
+
+
+\titleformat{\subsection}%
+  {\large\bfseries \filcenter}%
+  {\thesubsection}%
+  {1em}%
+  {}%
+
+
+\titleformat{\subsubsection}%
+  {\normalsize\bfseries \filcenter}%
+  {\thesubsection}%
+  {1em}%
+  {}%
+
+
+\titleformat{\chapter}%
+  {\huge\bfseries \filcenter}%
+  {\thechapter}%
+  {1em}%
+  {}%
+
+\titleformat{\part}%`
+  { \Huge\bfseries \filcenter}%
+  {\thepart}%
+  {1em}%
+  {}%
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{code}{\small\verbatim}{\endverbatim}
+
+
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\def\lra{\longrightarrow}
+
+
+\newcommand{\mnote}[1]{\marginpar{%
+	\vskip-\baselineskip
+	\raggedright\footnotesize
+	\itshape\hrule\smallskip\tiny{#1}\par\smallskip\hrule}}
+
+\mainmatter
+
+\begin{document}
+
+\pagestyle{empty}
+{\center
+
+{\Huge
+SharkSVM manual v0.1
+}\vfil}
+ 
+\newpage
+ 
+
+\tableofcontents
+
+\newpage 
+
+
+\chapter{Introduction}
+
+
+\section{What is SharkSVM?}
+
+SharkSVM is a command line wrapper for the 
+high-performance C++ machine learning library Shark.
+As an open source project SharkSVM can harrness
+the inherent power of the community.
+
+Why is SharkSVM a good choice?
+
+\begin{itemize}
+\item It contains highly optimized code.
+\end{itemize}
+
+As an open source project, we can use the all the power of the
+open source world:
+
+
+
+\section{Features}
+
+SharkSVM supports the algorithms
+\begin{itemize}
+  \item SMO
+  \item BSGD
+  \item RFF
+  \item ICF
+\end{itemize}
+
+
+
+\section{ToDos and Ideas}
+
+\begin{itemize}
+\item json?
+\end{itemize}
+
+
+\section{The other side of the coin}
+
+Though we will take some care not to include patented algorithms,
+we cannot take any guarantees that by using this software, you are
+making use of third-party patents.
+If you see anything that infringes any patent or copyright, please
+tell us, we will remove the offending parts immediately and will
+try to find another workaround.
+
+
+
+ 
+\chapter{Using SharkSVM}
+
+
+\section{Simple example}
+
+
+
+\chapter{Tickets}
+
+
+
+
+
+
+\section{Input Data}
+
+Datasets can be read in the wide-spread Sparse Data format.
+Alternatively there are some converters.
+
+
+\section{Output}
+
+The output is a modified LIBSVM model.
+
+
+\section{Logs}
+
+format of log (=HTML, XML, JSON?, TXT), place for log, filename for log.
+
+
+
+\chapter{Technical side}
+
+
+
+\section{Unittests}
+
+or whitebox testing.
+
+
+\section{Sourcecode Structure}
+
+In case you want to help us by either fixing bugs or
+developing new features, here are some guidelines.
+
+
+\chapter{Appendix}
+
+
+
+\section{Licences}
+
+SharkSVM is LGPL. Shark is LGPL.
+Boost is Boost.
+
+Document created with XeLateX.
+
+This document uses the Nunito font.
+
+
+\printindex
+
+\end{document}

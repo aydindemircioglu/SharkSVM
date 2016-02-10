@@ -1,0 +1,465 @@
+    <!DOCTYPE HTML>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>SharkSVM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SharkSVM, Machine Learning Toolbox, Shark, Machine Learning, SVM, Support Vector Machines">
+    <meta name="author" content="Aydin Demircioglu">
+    <!-- Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Web fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <style>
+    body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Load ScrollTo -->
+    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <!-- Load LocalScroll -->
+    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+    </head>
+    <body>
+
+    <div id="top"></div>
+    <!-- ******************** HeaderWrap ********************-->
+    <div id="headerwrap">
+      <header class="clearfix">
+        <h1><span>SharkSVM</span>
+        <h2>A Machine Learning Toolbox<br> build around <a href="http://image.diku.dk/shark">Shark</a></h2>
+              <input type="submit" value="Download" class="cform-submit">
+      </header>
+    </div>
+    <!--******************** Portfolio Section ********************-->
+    <section id="portfolio" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-desktop-circled"></i></div>
+        <h1 id="folio-headline">Overview</h1>
+        <div class="row">
+        <div class="span6">
+        <h3>SharkSVM is a machine learning toolbox, written in C++. It is powered by the very performant Shark Machine Learning
+        Library. Contains several algorithms for solving SVMs.
+        </div>
+        <div class="span6">
+        <h3>SharkSVM supports several state-of-the-art SVM solvers. SMO Solver, Cutting Plane Method, Random Kitchen Sinks, Fastfood.
+        </div>
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Shark Power</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>A Book Apart</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Four Rules for Designers</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+        </div>
+        <!-- /.row -->
+        
+        <div class="row">
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Algorithms</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>SMO Solver, Kernel SGD/Pegasos, Fastfood </p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>A Book Apart</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Four Rules for Designers</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <!--******************** Portfolio Section ********************-->
+    <section id="portfolio" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-desktop-circled"></i></div>
+        <h1 id="folio-headline">Features</h1>
+        <div class="row">
+        <div class="span6">
+        <h3>SharkSVM is a machine learning toolbox. It is powered by the very performant Shark Machine Learning
+        Library. Contains several algorithms for solving SVMs.
+        </div>
+        <div class="span6">
+        <h3>SharkSVM is a machine learning toolbox. It is powered by the very performant Shark Machine Learning
+        Library. Contains several algorithms for solving SVMs.
+        </div>
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Shark Power</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Step by Step</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p></p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Comparing/Evaluation</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Which algorithm to use when, how it does compare to other packages..</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+        </div>
+        <!-- /.row -->
+        
+        <div class="row">
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Algorithms</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>SMO Solver, Kernel SGD/Pegasos, Fastfood </p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>A Book Apart</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Four Rules for Designers</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <a class="more-link" href="#">view project</a> </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    
+    
+        <!--******************** News Section ********************-->
+    <section id="news" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-pencil-circled"></i></div>
+        <h1>Install</h1>
+        <!-- Three columns -->
+        
+        <div class="row">
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Windows</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Download the ZIP-file<br/>
+                   Unzip to your favourite directory<br/>
+                   Open a terminal by using Start->Search->Cmd.exe<br/>
+               </div>    
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Linux</h2>
+              </hgroup>
+              <div class="entry-content">
+                <p>Download the ZIP-file<br/>
+                
+                </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+          <div class="span4">
+            <div class="inside">
+              <hgroup>
+                <h2>Mac OSX</h2>
+              </hgroup>
+              <div class="entry-content">
+                Download the ZIP-file</br>
+              </div>
+            </div>
+            <!-- /.inside -->
+          </div>
+          <!-- /.span4 -->
+        </div>
+        <!-- /.row -->
+      <!-- /.container -->
+    </section>
+    
+    
+    <!--******************** Services Section ********************-->
+    <section id="services" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-cog-circled"></i></div>
+        <h1>Using SharkSVM</h1>
+        <!-- Four columns -->
+        <div class="row">
+          <div class="span3">
+            <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+            <h2>License</h2>
+            <p>SharkSVM is LGPL.</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-vector sev_icon"></i> </div>
+            <h2>Citing</h2>
+            <p>If you use SharkSVM for your research, please cite us: ...</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-basket sev_icon"></i> </div>
+            <h2>Developing</h2>
+            <p>Join us at Github, every help is welcome.</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-mobile-1 sev_icon"></i> </div>
+            <h2>Marketing</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+          </div>
+          <!-- /.span3 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    
+    <!--******************** Services Section ********************-->
+    <section id="services" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-cog-circled"></i></div>
+        <h1>Questions</h1>
+        <!-- Four columns -->
+        <div class="row">
+          <div class="span3">
+            <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+            <h2>License</h2>
+            <p>SharkSVM is LGPL.</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-vector sev_icon"></i> </div>
+            <h2>Citing</h2>
+            <p>If you use SharkSVM for your research, please cite us: ...</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-basket sev_icon"></i> </div>
+            <h2>Developing</h2>
+            <p>Join us at Github, every help is welcome.</p>
+          </div>
+          <!-- /.span3 -->
+          <div class="span3">
+            <div class="align"> <i class="icon-mobile-1 sev_icon"></i> </div>
+            <h2>Data</h2>
+            <p>LibSVM/Sparse Data Format, CSV, How to convert</p>
+          </div>
+          <!-- /.span3 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    
+    <!--******************** News Section ********************-->
+    <section id="news" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-pencil-circled"></i></div>
+        <h1>Download</h1>
+        <!-- Three columns -->
+        <div class="row">
+          <article class="span4 post"> <img class="img-news" src="" alt="">
+            <div class="inside">
+              <h2>Linux</h2>
+              <div class="entry-content">
+                <p>Ubuntu 64bit</p>
+                <p>Nightly build</p>
+                </div>
+            </div>
+            <!-- /.inside -->
+          </article>
+          <!-- /.span4 -->
+          <article class="span4 post"> <img class="img-news" src="" alt="">
+            <div class="inside">
+              <h2>Mac OS X</h2>
+              <div class="entry-content">
+                <p>Mac OSX</p>
+                </div>
+            </div>
+            <!-- /.inside -->
+          </article>
+          <!-- /.span4 -->
+          <article class="span4 post"> <img class="img-news" src="" alt="">
+            <div class="inside">
+              <h2>Windows</h2>
+              <div class="entry-content">
+                <p>Windows 32bit<br>Windows 64bit</p>
+                </div>
+            </div>
+            <!-- /.inside -->
+          </article>
+          <!-- /.span4 -->
+        </div>
+      <!-- /.container -->
+    </section>
+    
+
+    <!--******************** Contact Section ********************-->
+    <section id="news" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-mail-2"></i></div>
+        <h1>Contact us now!</h1>
+        <div class="row">
+          <div class="span12">
+            <div class="cform" id="theme-form">
+              <form action="#" method="post" class="cform-form">
+                <div class="row">
+                  <div class="span6"> <span class="your-name">
+                    <input type="text" name="your-name" placeholder="Your Name" class="cform-text" size="40" title="your name">
+                    </span> </div>
+                  <div class="span6"> <span class="your-email">
+                    <input type="text" name="your-email" placeholder="Your Email" class="cform-text" size="40" title="your email">
+                    </span> </div>
+                </div>
+                <div class="row">
+                  <div class="span6"> <span class="company">
+                    <input type="text" name="company" placeholder="Your Company" class="cform-text" size="40" title="company">
+                    </span> </div>
+                  <div class="span6"> <span class="website">
+                    <input type="text" name="website" placeholder="Your Website" class="cform-text" size="40" title="website">
+                    </span> </div>
+                </div>
+                <div class="row">
+                  <div class="span12"> <span class="message">
+                    <textarea name="message" class="cform-textarea" cols="40" rows="10" title="drop us a line."></textarea>
+                    </span> </div>
+                </div>
+                <div>
+                  <input type="submit" value="Send message" class="cform-submit">
+                </div>
+                <div class="cform-response-output"></div>
+              </form>
+            </div>
+          </div>
+          <!-- ./span12 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    
+    <div class="footer-wrapper">
+      <div class="container">
+        <footer>
+            'Shark is crying, but water hides her tears.'<br>
+          <small>&copy; 2014, All rights reserved.</small>
+        </footer><br>
+      </div>
+      <!-- ./container -->
+    </div>
+    <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+    </body>
+    </html>

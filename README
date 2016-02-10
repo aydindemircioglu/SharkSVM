@@ -1,0 +1,22 @@
+-*- text -*-
+
+SharkSVM
+
+
+For installation instructions, please refer to the file INSTALL or
+our webpage. Our webpage also contains an elaborate user manual and
+some use cases to familiarize users with the software.
+
+Please report bugs to aydin.demircioglu@ini.rub.de
+
+Licensing
+
+
+----
+
+Copyright (C) 2013-2015 Institute for Neural Computing, RUB, Bochum
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without warranty of any kind.
